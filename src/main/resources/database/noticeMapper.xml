@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.iu.s3.board.notice.NoticeDAO">
+	<insert id="setInsert" parameterType="com.iu.s3.board.BoardVO">
+		insert into notice (num, title, writer, contents, createDate, hit)
+		values(board_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0)
+	</insert>
+	
+	<update id="setUpdate" parameterType="com.iu.s3.board.BoardVO">
+		update notice set title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+	<delete id="setDelete" parameterType="com.iu.s3.board.BoardVO">
+		delete notice where num=#{num}
+	</delete>
+	
+	<select id="getSelect" parameterType="com.iu.s3.board.BoardVO" resultType="com.iu.s3.board.notice.NoticeVO">
+		select * from notice where num=#{num}
+	</select>
+	
+	<select id="getSelectList" resultType="com.iu.s3.board.notice.NoticeVO">
+		select * from notice order by num desc
+	</select>
+	
+	
+</mapper>  
